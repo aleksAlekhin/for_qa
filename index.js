@@ -328,3 +328,64 @@ let menu = {
   multiplyNumeric(menu);
   
   console.log(menu);
+
+  // Методы объекта, "this"
+
+  // Создайте калькулятор
+  let calculator = {
+    read () {
+      this.num1 = prompt();
+      this.num2 = prompt()
+    },
+    sum () {
+      return this.num1 + this.num2
+    },
+    mul () {
+      return this.num1 * this.num2
+    }
+  };
+  calculator.read();
+  alert( calculator.sum());
+  alert( calculator.mul());
+
+  // Цепь вызовов 
+  let ladder = {
+    step: 0,
+    up() {
+      this.step++;
+      return this;
+    },
+    down() {
+      this.step--;
+      return this;
+    },
+    showStep() {
+      alert( this.step );
+      return this;
+    }
+  };
+  
+  ladder.up().up().down().showStep().down().showStep();
+
+  // Создайте калькулятор при помощи конструктора, new Calculator
+  function Calculator() {
+    this.read = function() {
+      this.a = +prompt();
+      this.b = +prompt();
+    };
+
+    this.mul = function() {
+      return this.a * this.b;
+    };
+
+    this.sum = function() {
+      return this.a + this.b;
+    };  
+  }
+  
+  let calculator1 = new Calculator();
+  calculator.read();
+
+  alert("Mul = " + calculator1.mul());
+  alert("Sum = " + calculator1.sum());
+  
